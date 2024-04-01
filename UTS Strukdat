@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+#include <list>
+
+using namespace std;
+
+class Inventaris {
+private:
+    struct Barang {
+        string nama;
+        double harga;
+        int jumlah;
+    };
+
+    list<Barang> daftarBarang;
+
+public:
+    void tambahBarang(string nama, double harga, int jumlah) {
+        Barang barang;
+        barang.nama = nama;
+        barang.harga = harga;
+        barang.jumlah = jumlah;
+        daftarBarang.push_back(barang);
+    }
+
+    void tampilkanBarang() {
+        cout << "Daftar Barang:" << endl;
+        for (auto& barang : daftarBarang) {
+            cout << "Nama: " << barang.nama << ", Harga: $" << barang.harga << ", Jumlah: " << barang.jumlah << " pcs" << endl;
+        }
+    }
+};
+
+int main() {
+    Inventaris inventaris;
+    int pilihan;
+
+    do {
+        cout << "\n=== Menu Inventaris ===" << endl;
+        cout << "1. Tambah Barang" << endl;
+        cout << "2. Tampilkan Barang" << endl;
+        cout << "3. Keluar" << endl;
+        cout << "Pilih opsi: ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+        case 1: {
+            string nama;
+            double harga;
+            int jumlah;
+            cout << "Masukkan nama barang: ";
+            cin >> nama;
+            cout << "Masukkan harga barang: $";
+            cin >> harga;
+            cout << "Masukkan jumlah barang: ";
+            cin >> jumlah;
+            inventaris.tambahBarang(nama, harga, jumlah);
+            cout << "Barang berhasil ditambahkan!" << endl;
+            break;
+        }
+        case 2:
+            inventaris.tampilkanBarang();
+            break;
+        case 3:
+            cout << "Terima kasih telah menggunakan program inventaris!" << endl;
+            cout << "Nama: Muhammad Azzam" << endl;
+            cout << "NPM: 2310631170099" << endl;
+            cout << "Kelas: 2C" << endl;
+            break;
+        default:
+            cout << "Silakan pilih lagi." << endl;
+        }
+    } while (pilihan != 3);
+
+    return 0;
+}
